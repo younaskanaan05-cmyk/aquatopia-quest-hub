@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aquatopia - Hack the Future 2025</title>
+    <meta name="description" content="Join Hack the Future 2025 - Aquatopia on November 12-13 in Antwerpen. A 24-hour hackathon where technology meets the ocean. Register now!" />
+    <meta name="author" content="Hack the Future" />
+    
+    <meta property="og:title" content="Aquatopia - Hack the Future 2025" />
+    <meta property="og:description" content="Join Hack the Future 2025 - Aquatopia on November 12-13 in Antwerpen. A 24-hour hackathon where technology meets the ocean." />
+    <meta property="og:type" content="website" />
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(180deg, hsl(200 60% 8%) 0%, hsl(200 50% 15%) 50%, hsl(185 70% 25%) 100%);
+            background-attachment: fixed;
+            color: hsl(185 80% 95%);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('src/assets/hero-ocean.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, 
+                hsla(200, 60%, 8%, 0.8) 0%, 
+                hsla(200, 60%, 8%, 0.6) 50%, 
+                hsla(185, 70%, 25%, 0.8) 100%);
+        }
+        
+        .particles {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: hsl(185 90% 65%);
+            border-radius: 50%;
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .hero-title {
+            font-size: 5rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-shadow: 0 0 20px hsla(185, 90%, 65%, 0.6), 0 0 40px hsla(185, 90%, 65%, 0.4);
+            margin-bottom: 2rem;
+            font-family: Georgia, serif;
+        }
+        
+        .hero-details {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+            color: hsla(185, 80%, 95%, 0.9);
+        }
+        
+        .hero-separator {
+            color: hsl(185 90% 55%);
+        }
+        
+        .hero-venue {
+            font-size: 1.5rem;
+            color: hsl(185 30% 65%);
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-tagline {
+            font-size: 1.875rem;
+            font-style: italic;
+            font-family: Georgia, serif;
+            color: hsla(185, 80%, 95%, 0.8);
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            font-size: 1.125rem;
+            border: none;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .btn-ocean {
+            background: hsl(185 80% 45%);
+            color: hsl(200 60% 8%);
+        }
+        
+        .btn-ocean:hover {
+            background: hsl(185 90% 55%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px hsla(185, 80%, 45%, 0.4);
+        }
+        
+        .btn-glow {
+            background: hsla(185, 90%, 55%, 0.1);
+            color: hsl(185 90% 55%);
+            border: 2px solid hsl(185 90% 55%);
+        }
+        
+        .btn-glow:hover {
+            background: hsla(185, 90%, 55%, 0.2);
+            box-shadow: 0 0 30px hsla(185, 90%, 55%, 0.5);
+        }
+        
+        .bottom-fade {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 8rem;
+            background: linear-gradient(to top, hsl(200 60% 8%), transparent);
+            z-index: 1;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 6rem 1rem;
+            position: relative;
+        }
+        
+        .about-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .about-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            font-family: Georgia, serif;
+            text-shadow: 0 0 20px hsla(185, 90%, 65%, 0.6), 0 0 40px hsla(185, 90%, 65%, 0.4);
+            margin-bottom: 1rem;
+        }
+        
+        .about-description {
+            font-size: 1.25rem;
+            color: hsl(185 30% 65%);
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .feature-card {
+            background: hsla(200, 50%, 12%, 0.4);
+            backdrop-filter: blur(8px);
+            border: 1px solid hsla(185, 90%, 55%, 0.3);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            border-color: hsla(185, 90%, 55%, 0.6);
+            box-shadow: 0 0 30px rgba(94, 234, 212, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 1.5rem;
+            padding: 1rem;
+            background: hsla(185, 90%, 55%, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover .feature-icon {
+            background: hsla(185, 90%, 55%, 0.3);
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: hsl(185 80% 95%);
+        }
+        
+        .feature-description {
+            color: hsl(185 30% 65%);
+            line-height: 1.8;
+        }
+        
+        .expectations-card {
+            background: hsla(200, 50%, 12%, 0.4);
+            backdrop-filter: blur(8px);
+            border: 1px solid hsla(185, 90%, 55%, 0.3);
+            border-radius: 0.75rem;
+            padding: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .expectations-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: hsl(185 80% 95%);
+        }
+        
+        .expectations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .expectations-section h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: hsl(185 90% 55%);
+            margin-bottom: 1rem;
+        }
+        
+        .expectations-section ul {
+            list-style: none;
+            color: hsl(185 30% 65%);
+        }
+        
+        .expectations-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 3rem 1rem;
+            border-top: 1px solid hsla(185, 90%, 55%, 0.2);
+            background: hsla(200, 60%, 8%, 0.5);
+            backdrop-filter: blur(8px);
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.5rem;
+            font-family: Georgia, serif;
+            font-weight: 700;
+            color: hsl(185 90% 55%);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-section h4 {
+            font-weight: 600;
+            color: hsl(185 80% 95%);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-section p {
+            color: hsl(185 30% 65%);
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section a {
+            display: block;
+            color: hsl(185 90% 55%);
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: hsla(185, 90%, 55%, 0.8);
+        }
+        
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid hsla(185, 90%, 55%, 0.2);
+            text-align: center;
+            color: hsl(185 30% 65%);
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .hero-tagline {
+                font-size: 1.25rem;
+            }
+            
+            .about-title {
+                font-size: 2.5rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .expectations-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg">
+            <div class="hero-overlay"></div>
+        </div>
+        
+        <div class="particles" id="particles"></div>
+        
+        <div class="hero-content">
+            <h1 class="hero-title">AQUATOPIA</h1>
+            
+            <div class="hero-details">
+                <span>📅 12-13 November 2025</span>
+                <span class="hero-separator">•</span>
+                <span>📍 Antwerpen</span>
+            </div>
+            
+            <p class="hero-venue">Flanders Meeting & Convention Center</p>
+            
+            <p class="hero-tagline">De oceaan onthult haar geheimen...</p>
+            
+            <div class="hero-buttons">
+                <a href="https://app.hackthefuture.be/register/5" target="_blank" rel="noopener noreferrer" class="btn btn-ocean">
+                    Schrijf je in →
+                </a>
+                <button class="btn btn-glow">Bekijk de trailer</button>
+            </div>
+        </div>
+        
+        <div class="bottom-fade"></div>
+    </section>
+    
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <div class="about-header">
+                <h2 class="about-title">Welkom in Aquatopia</h2>
+                <p class="about-description">
+                    Een wereld waar technologie en oceaan samenkomen. Hack the Future 2025 
+                    brengt de beste developers, designers en tech enthousiasten samen voor 
+                    een onvergetelijke hackathon ervaring.
+                </p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="hsl(185 90% 55%)" stroke-width="2">
+                            <path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Duik in de diepte</h3>
+                    <p class="feature-description">
+                        Verken de mysteries van de oceaan terwijl je innovatieve oplossingen ontwikkelt voor de uitdagingen van morgen.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="hsl(185 90% 55%)" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Navigeer door code</h3>
+                    <p class="feature-description">
+                        Werk samen met andere developers en designers om unieke projecten tot leven te brengen tijdens dit 24-uur hackathon.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="hsl(185 90% 55%)" stroke-width="2">
+                            <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/>
+                            <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Vind je schat</h3>
+                    <p class="feature-description">
+                        Compete voor geweldige prijzen en maak kans om je carrière te lanceren met topbedrijven in de tech industrie.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="expectations-card">
+                <h3 class="expectations-title">Wat kun je verwachten?</h3>
+                <div class="expectations-grid">
+                    <div class="expectations-section">
+                        <h4>Voor developers</h4>
+                        <ul>
+                            <li>• 24-uur intense coding sessies</li>
+                            <li>• Mentorship van industry experts</li>
+                            <li>• Workshops en tech talks</li>
+                            <li>• Netwerken met bedrijven</li>
+                        </ul>
+                    </div>
+                    <div class="expectations-section">
+                        <h4>Inclusief</h4>
+                        <ul>
+                            <li>• Gratis eten en drinken</li>
+                            <li>• Prijzen en swag</li>
+                            <li>• Slaapruimte (optioneel)</li>
+                            <li>• Onvergetelijke ervaring</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>Aquatopia</h3>
+                    <p>Hack the Future 2025</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Event Details</h4>
+                    <p>12-13 November 2025</p>
+                    <p>Flanders Meeting & Convention Center</p>
+                    <p>Antwerpen, Belgium</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Links</h4>
+                    <a href="https://www.hackthefuture.be/2025/" target="_blank" rel="noopener noreferrer">Official Website</a>
+                    <a href="https://app.hackthefuture.be/register/5" target="_blank" rel="noopener noreferrer">Register Now</a>
+                    <a href="https://cronos-groep.be/" target="_blank" rel="noopener noreferrer">Cronos Group</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2025 Hack the Future - Powered by Cronos Group</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Generate floating particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 20; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 3 + 's';
+            particle.style.opacity = Math.random() * 0.7 + 0.3;
+            particlesContainer.appendChild(particle);
+        }
+    </script>
+</body>
+</html>
